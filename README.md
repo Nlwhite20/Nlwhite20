@@ -16,10 +16,11 @@ Engineering (WGU, in progress)
 | --- | --- | --- |
 | [home-lab-foundation](https://github.com/Nlwhite20/home-lab-foundation) | Lab scope, safety rules and network plan | Authorized-scope rules and an isolated UTM lab design |
 | [noc-monitoring-lab](https://github.com/Nlwhite20/noc-monitoring-lab) | Monitoring and alerting: Prometheus, Grafana, Uptime Kuma, Discord | Controlled outage tests with scripted evidence; found an alert rule bypassing its notification policy; published a dated correction when a VM clock error affected earlier timestamps |
-| [wazuh-siem-lab](https://github.com/Nlwhite20/wazuh-siem-lab) | Wazuh SIEM deployment, configuration audit, alert triage | Found and fixed a dashboard exposure that contradicted the documented baseline (mapped to NIST CM-2/3/6, CA-7); first investigation correlated 7 IDS alerts to SIEM records on four fields and logged an agent queue overflow as an open risk |
+| [wazuh-siem-lab](https://github.com/Nlwhite20/wazuh-siem-lab) | Wazuh SIEM deployment, configuration audit, alert triage | Found and fixed a dashboard exposure that contradicted the documented baseline (mapped to NIST CM-2/3/6, CA-7); first investigation correlated 7 IDS alerts to SIEM records on four fields and logged an agent queue overflow as an open risk; upgraded to 4.14.8 and required an agent enrollment password after the vendor review below |
 | [network-security-lab](https://github.com/Nlwhite20/network-security-lab) | Suricata IDS feeding Wazuh; scoped exposure audit | Proved the same alert end to end (matching flow ID); scoped Nmap audit found no undocumented open ports; documented that default rules did not flag the scan as a port scan |
 | [vulnerability-management-lab](https://github.com/Nlwhite20/vulnerability-management-lab) | One vulnerability assessment cycle on one Linux host | 10,743 findings traced to one kernel CVE set counted across three kernels; removed an unused kernel (findings to 7,095, as predicted); documented exceptions with pending owner decisions. Not all vulnerabilities are remediated |
 | [backup-restore-lab](https://github.com/Nlwhite20/backup-restore-lab) | Encrypted, scheduled backups with tested restores (restic, append-only rest-server) | Restore tests with hash verification (folder restored in under 1 s against a 30-minute target); a client's attempt to delete a backup was refused by the append-only server; missed-backup detection; verified third copy. Not off-site, and retention pruning and alert notification are still open |
+| [grc-documentation-lab](https://github.com/Nlwhite20/grc-documentation-lab) | GRC self-assessment of the lab: control inventory, SOC 2 Trust Services Criteria gap analysis, CSA CAIQ v4, security response library, vendor risk review | 24 controls inventoried with evidence links (8 Implemented, 16 Partial); 36 SOC 2 criteria mapped with seven main gaps; 261 CAIQ answers keyed by question ID; a Wazuh vendor review found newly published CVEs affecting the running SIEM, which was upgraded and hardened the same day. A self-assessment, not an audit |
 
 ## How I work
 
@@ -27,7 +28,7 @@ Engineering (WGU, in progress)
   marks missing evidence instead of filling the gap.
 - **Change control:** scope and approvals written before changes, and a build log in each lab.
   Changes found without a record are documented as findings (for example, wazuh-siem-lab Finding 001).
-- **AI collaboration, human validation:** I use Claude as an assistant. The five lab repos each
+- **AI collaboration, human validation:** I use Claude as an assistant. The six lab repos each
   have an "AI Collaboration and Human Validation" section recording where its suggestions were
   corrected.
 
